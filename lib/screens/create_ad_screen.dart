@@ -55,7 +55,13 @@ class _CreateAdScreenState extends State<CreateAdScreen> {
                 children: [
                   Icon(Icons.map, color: AppTheme.primaryGreen),
                   SizedBox(width: 8),
-                  Text('Haritadan Halısaha Konumu İşaretle', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                  Expanded(
+                    child: Text(
+                      'Haritadan Halısaha Konumu İşaretle',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: 12),
@@ -380,7 +386,7 @@ class _CreateAdScreenState extends State<CreateAdScreen> {
                       onTap: () => _selectDate(context),
                       borderRadius: BorderRadius.circular(12),
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
                         decoration: BoxDecoration(
                           color: AppTheme.cardDark,
                           borderRadius: BorderRadius.circular(12),
@@ -389,27 +395,34 @@ class _CreateAdScreenState extends State<CreateAdScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text('Tarih', style: TextStyle(fontSize: 12, color: AppTheme.textMuted)),
-                                const SizedBox(height: 2),
-                                Text(formattedDate, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
-                              ],
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text('Tarih', style: TextStyle(fontSize: 12, color: AppTheme.textMuted)),
+                                  const SizedBox(height: 2),
+                                  Text(
+                                    formattedDate,
+                                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ],
+                              ),
                             ),
-                            const Icon(Icons.calendar_today, color: AppTheme.primaryGreen, size: 20),
+                            const SizedBox(width: 4),
+                            const Icon(Icons.calendar_today, color: AppTheme.primaryGreen, size: 18),
                           ],
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  const SizedBox(width: 8),
                   Expanded(
                     child: InkWell(
                       onTap: () => _selectTime(context),
                       borderRadius: BorderRadius.circular(12),
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
                         decoration: BoxDecoration(
                           color: AppTheme.cardDark,
                           borderRadius: BorderRadius.circular(12),
@@ -418,15 +431,22 @@ class _CreateAdScreenState extends State<CreateAdScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text('Saat', style: TextStyle(fontSize: 12, color: AppTheme.textMuted)),
-                                const SizedBox(height: 2),
-                                Text(formattedTime, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
-                              ],
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text('Saat', style: TextStyle(fontSize: 12, color: AppTheme.textMuted)),
+                                  const SizedBox(height: 2),
+                                  Text(
+                                    formattedTime,
+                                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ],
+                              ),
                             ),
-                            const Icon(Icons.access_time, color: AppTheme.primaryGreen, size: 20),
+                            const SizedBox(width: 4),
+                            const Icon(Icons.access_time, color: AppTheme.primaryGreen, size: 18),
                           ],
                         ),
                       ),
@@ -463,7 +483,14 @@ class _CreateAdScreenState extends State<CreateAdScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('Aranan Oyuncu Sayısı:', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                  const Expanded(
+                    child: Text(
+                      'Aranan Oyuncu Sayısı:',
+                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
                   Container(
                     decoration: BoxDecoration(
                       color: AppTheme.cardDark,

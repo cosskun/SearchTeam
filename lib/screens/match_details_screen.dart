@@ -699,7 +699,9 @@ class _MatchDetailsScreenState extends State<MatchDetailsScreen> {
                   const SizedBox(height: 12),
 
                   // Detail Pills (Position, Weather, Pricing)
-                  Row(
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
                     children: [
                       // Position Badge
                       Container(
@@ -709,6 +711,7 @@ class _MatchDetailsScreenState extends State<MatchDetailsScreen> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Row(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             Icon(_getPositionIcon(match.requiredPosition), size: 16, color: AppTheme.primaryGreen),
                             const SizedBox(width: 6),
@@ -719,7 +722,6 @@ class _MatchDetailsScreenState extends State<MatchDetailsScreen> {
                           ],
                         ),
                       ),
-                      const SizedBox(width: 8),
 
                       // Weather Badge
                       Container(
@@ -734,7 +736,6 @@ class _MatchDetailsScreenState extends State<MatchDetailsScreen> {
                           style: const TextStyle(color: Colors.lightBlueAccent, fontWeight: FontWeight.bold, fontSize: 12),
                         ),
                       ),
-                      const SizedBox(width: 8),
 
                       // Price Badge
                       Container(

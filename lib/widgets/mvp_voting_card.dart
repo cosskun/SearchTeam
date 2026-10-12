@@ -111,26 +111,28 @@ class MvpVotingCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Row(
-                children: [
-                  Icon(Icons.emoji_events, color: Colors.amber, size: 22),
-                  SizedBox(width: 8),
-                  Text(
-                    'Maç Sonu Skoru & MVP Seçimi',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.amber),
-                  ),
-                ],
+              const Icon(Icons.emoji_events, color: Colors.amber, size: 22),
+              const SizedBox(width: 8),
+              const Expanded(
+                child: Text(
+                  'Maç Skoru & MVP Seçimi',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.amber),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
               if (isHost)
                 TextButton.icon(
-                  style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                  style: TextButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    minimumSize: Size.zero,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
                   onPressed: () => _showScoreInputDialog(context),
-                  icon: const Icon(Icons.edit, size: 14, color: AppTheme.primaryGreen),
+                  icon: const Icon(Icons.edit, size: 13, color: AppTheme.primaryGreen),
                   label: Text(
-                    (match.finalScore ?? '').isEmpty ? 'Skor Gir' : 'Skoru Düzenle',
-                    style: const TextStyle(fontSize: 12, color: AppTheme.primaryGreen, fontWeight: FontWeight.bold),
+                    (match.finalScore ?? '').isEmpty ? 'Skor Gir' : 'Düzenle',
+                    style: const TextStyle(fontSize: 11, color: AppTheme.primaryGreen, fontWeight: FontWeight.bold),
                   ),
                 ),
             ],

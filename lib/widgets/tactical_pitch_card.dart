@@ -35,20 +35,20 @@ class TacticalPitchCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Row(
-                children: [
-                  Icon(Icons.sports_soccer, color: AppTheme.primaryGreen, size: 20),
-                  SizedBox(width: 8),
-                  Text(
-                    'Saha İçi Kadro Dizilişi & Etiketleme',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: AppTheme.primaryGreen),
-                  ),
-                ],
+              const Icon(Icons.sports_soccer, color: AppTheme.primaryGreen, size: 20),
+              const SizedBox(width: 8),
+              const Expanded(
+                child: Text(
+                  'Saha İçi Kadro Dizilişi & Etiketleme',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: AppTheme.primaryGreen),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
-              if (isHost)
-                const Text('(Dokun ve etiketle)', style: TextStyle(fontSize: 10, color: AppTheme.textMuted)),
+              if (isHost) ...[
+                const SizedBox(width: 6),
+                const Text('(Dokun & etiketle)', style: TextStyle(fontSize: 10, color: AppTheme.textMuted)),
+              ],
             ],
           ),
           const SizedBox(height: 12),

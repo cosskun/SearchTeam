@@ -63,56 +63,67 @@ class MatchCard extends StatelessWidget {
               // Header: Position Badge, Weather Badge & Pricing Badge
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Required position badge
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: _getPositionColor(match.requiredPosition).withOpacity(0.15),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: _getPositionColor(match.requiredPosition).withOpacity(0.5),
-                        width: 1,
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
+                  Expanded(
+                    child: Wrap(
+                      spacing: 6,
+                      runSpacing: 4,
+                      crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
-                        Icon(
-                          _getPositionIcon(match.requiredPosition),
-                          size: 14,
-                          color: _getPositionColor(match.requiredPosition),
+                        // Required position badge
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: _getPositionColor(match.requiredPosition).withOpacity(0.15),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: _getPositionColor(match.requiredPosition).withOpacity(0.5),
+                              width: 1,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                _getPositionIcon(match.requiredPosition),
+                                size: 13,
+                                color: _getPositionColor(match.requiredPosition),
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                match.requiredPosition.displayName,
+                                style: TextStyle(
+                                  color: _getPositionColor(match.requiredPosition),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 11,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        const SizedBox(width: 6),
-                        Text(
-                          match.requiredPosition.displayName,
-                          style: TextStyle(
-                            color: _getPositionColor(match.requiredPosition),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
+
+                        // Weather badge pill
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: Colors.blue.withOpacity(0.15),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: Colors.blueAccent.withOpacity(0.3)),
+                          ),
+                          child: Text(
+                            match.weatherText,
+                            style: const TextStyle(
+                              color: Colors.lightBlueAccent,
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
-
-                  // Weather badge pill
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.blue.withOpacity(0.15),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: Colors.blueAccent.withOpacity(0.3)),
-                    ),
-                    child: Text(
-                      match.weatherText,
-                      style: const TextStyle(
-                        color: Colors.lightBlueAccent,
-                        fontSize: 11,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+                  const SizedBox(width: 8),
 
                   // Pricing badge
                   Container(
@@ -190,33 +201,40 @@ class MatchCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // Host Rating Info
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 12,
-                        backgroundColor: AppTheme.primaryGreen.withOpacity(0.2),
-                        child: Text(
-                          match.hostName[0].toUpperCase(),
-                          style: const TextStyle(
-                            color: AppTheme.primaryGreen,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CircleAvatar(
+                          radius: 12,
+                          backgroundColor: AppTheme.primaryGreen.withOpacity(0.2),
+                          child: Text(
+                            match.hostName[0].toUpperCase(),
+                            style: const TextStyle(
+                              color: AppTheme.primaryGreen,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 6),
-                      Text(
-                        isCurrentUserHost ? 'Senin İlanın' : match.hostName,
-                        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(width: 4),
-                      const Icon(Icons.star, color: Colors.amber, size: 14),
-                      Text(
-                        ' ${match.hostRating}',
-                        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                        const SizedBox(width: 6),
+                        Flexible(
+                          child: Text(
+                            isCurrentUserHost ? 'Senin İlanın' : match.hostName,
+                            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        const SizedBox(width: 4),
+                        const Icon(Icons.star, color: Colors.amber, size: 14),
+                        Text(
+                          ' ${match.hostRating}',
+                          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
                   ),
+                  const SizedBox(width: 8),
 
                   // Missing spots left badge
                   Text(

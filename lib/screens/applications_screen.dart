@@ -112,7 +112,13 @@ class ApplicationsScreen extends StatelessWidget {
                     children: [
                       const Icon(Icons.location_on, size: 14, color: AppTheme.textMuted),
                       const SizedBox(width: 4),
-                      Text('${match.district} - ${match.locationName}', style: const TextStyle(fontSize: 12, color: AppTheme.textMuted)),
+                      Expanded(
+                        child: Text(
+                          '${match.district} - ${match.locationName}',
+                          style: const TextStyle(fontSize: 12, color: AppTheme.textMuted),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 4),
@@ -120,7 +126,13 @@ class ApplicationsScreen extends StatelessWidget {
                     children: [
                       const Icon(Icons.calendar_month, size: 14, color: AppTheme.textMuted),
                       const SizedBox(width: 4),
-                      Text(formattedDate, style: const TextStyle(fontSize: 12, color: AppTheme.textMuted)),
+                      Expanded(
+                        child: Text(
+                          formattedDate,
+                          style: const TextStyle(fontSize: 12, color: AppTheme.textMuted),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 12),
@@ -241,7 +253,13 @@ class ApplicationsScreen extends StatelessWidget {
                     children: [
                       const Icon(Icons.location_on, size: 14, color: AppTheme.textMuted),
                       const SizedBox(width: 4),
-                      Text('${match.district} - ${match.locationName}', style: const TextStyle(fontSize: 12, color: AppTheme.textMuted)),
+                      Expanded(
+                        child: Text(
+                          '${match.district} - ${match.locationName}',
+                          style: const TextStyle(fontSize: 12, color: AppTheme.textMuted),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 4),
@@ -249,7 +267,13 @@ class ApplicationsScreen extends StatelessWidget {
                     children: [
                       const Icon(Icons.calendar_month, size: 14, color: AppTheme.textMuted),
                       const SizedBox(width: 4),
-                      Text(formattedDate, style: const TextStyle(fontSize: 12, color: AppTheme.textMuted)),
+                      Expanded(
+                        child: Text(
+                          formattedDate,
+                          style: const TextStyle(fontSize: 12, color: AppTheme.textMuted),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 12),
@@ -260,17 +284,21 @@ class ApplicationsScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        '$appCount Başvuru ($pendingCount bekleyen)',
-                        style: TextStyle(
-                          color: pendingCount > 0 ? AppTheme.primaryGreen : AppTheme.textMuted,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
+                      Flexible(
+                        child: Text(
+                          '$appCount Başvuru ($pendingCount bekleyen)',
+                          style: TextStyle(
+                            color: pendingCount > 0 ? AppTheme.primaryGreen : AppTheme.textMuted,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
+                      const SizedBox(width: 8),
                       Text(
-                        'Aranan: ${match.requiredPosition.displayName} (${match.spotsNeeded} spots)',
-                        style: const TextStyle(fontSize: 12, color: AppTheme.textMuted),
+                        'Aranan: ${match.requiredPosition.displayName} (${match.spotsNeeded} spot)',
+                        style: const TextStyle(fontSize: 11, color: AppTheme.textMuted),
                       ),
                     ],
                   ),

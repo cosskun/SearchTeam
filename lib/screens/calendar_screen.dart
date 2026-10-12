@@ -504,54 +504,61 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   // Top Row: Time, Weather & Custom Badges
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Row(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: isPast
-                                  ? Colors.white10
-                                  : AppTheme.primaryGreen.withOpacity(0.15),
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
-                                color: isPast ? Colors.white24 : AppTheme.primaryGreen.withOpacity(0.4),
+                      Expanded(
+                        child: Wrap(
+                          spacing: 6,
+                          runSpacing: 4,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: isPast
+                                    ? Colors.white10
+                                    : AppTheme.primaryGreen.withOpacity(0.15),
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                  color: isPast ? Colors.white24 : AppTheme.primaryGreen.withOpacity(0.4),
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.access_time,
+                                    size: 13,
+                                    color: isPast ? AppTheme.textMuted : AppTheme.primaryGreen,
+                                  ),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    formattedTime,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: isPast ? AppTheme.textMuted : AppTheme.primaryGreen,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.access_time,
-                                  size: 13,
-                                  color: isPast ? AppTheme.textMuted : AppTheme.primaryGreen,
-                                ),
-                                const SizedBox(width: 4),
-                                Text(
-                                  formattedTime,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: isPast ? AppTheme.textMuted : AppTheme.primaryGreen,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: Colors.blue.withOpacity(0.15),
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(color: Colors.blueAccent.withOpacity(0.3)),
+                              ),
+                              child: Text(
+                                match.weatherText,
+                                style: const TextStyle(color: Colors.lightBlueAccent, fontWeight: FontWeight.bold, fontSize: 11),
+                              ),
                             ),
-                          ),
-                          const SizedBox(width: 6),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: Colors.blue.withOpacity(0.15),
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(color: Colors.blueAccent.withOpacity(0.3)),
-                            ),
-                            child: Text(
-                              match.weatherText,
-                              style: const TextStyle(color: Colors.lightBlueAccent, fontWeight: FontWeight.bold, fontSize: 11),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
+                      const SizedBox(width: 8),
 
                       // Contextual status pill
                       if (isHost)
@@ -695,24 +702,31 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          Icon(
-                            isPast ? Icons.check_circle_outline : Icons.hourglass_bottom,
-                            size: 14,
-                            color: isPast ? Colors.white38 : (difference.isNegative ? AppTheme.textMuted : Colors.amber),
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            countdownText,
-                            style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold,
+                      Expanded(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              isPast ? Icons.check_circle_outline : Icons.hourglass_bottom,
+                              size: 14,
                               color: isPast ? Colors.white38 : (difference.isNegative ? AppTheme.textMuted : Colors.amber),
                             ),
-                          ),
-                        ],
+                            const SizedBox(width: 4),
+                            Flexible(
+                              child: Text(
+                                countdownText,
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                  color: isPast ? Colors.white38 : (difference.isNegative ? AppTheme.textMuted : Colors.amber),
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
+                      const SizedBox(width: 6),
                       if (!isPast)
                         TextButton.icon(
                           style: TextButton.styleFrom(
@@ -731,7 +745,13 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                     children: [
                                       Icon(Icons.event_available, color: AppTheme.primaryGreen),
                                       SizedBox(width: 8),
-                                      Text('Takvime Eklendi! 📅', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                                      Expanded(
+                                        child: Text(
+                                          'Takvime Eklendi! 📅',
+                                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                   content: Text(
